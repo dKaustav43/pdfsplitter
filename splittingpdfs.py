@@ -1,12 +1,14 @@
 import os
-from PyPDF2 import PdfWriter, PdfReader, PdfMerger
+from PyPDF2 import PdfWriter, PdfReader
 
-file_name = "sample.pdf"
+input_pdf_path = input("Enter the path of the pdf file here:")
 
-if not os.path.isfile(file_name):
-    print(f"The file {file_name} does not exist.")
+#file_name = "sample.pdf"
+
+if not os.path.isfile(input_pdf_path):
+    print(f"The file {input_pdf_path} does not exist.")
 else:
-    inputpdf = PdfReader(open(file_name, "rb"))
+    inputpdf = PdfReader(open(input_pdf_path, "rb"))
 
     writer = PdfWriter()
 
