@@ -2,6 +2,8 @@ import os
 from PyPDF2 import PdfWriter, PdfReader
 
 input_pdf_path = input("Enter the path of the pdf file here:")
+output_pdf_path = input("Enter the path where you would like to store the spliced pdf:")
+output_pdf_name = input("Enter the name of the sliced pdf file")
 
 #file_name = "sample.pdf"
 
@@ -17,7 +19,7 @@ else:
         writer.add_page(inputpdf.pages[i])
 
     # Write to a single merged PDF
-    with open("merged.pdf", "wb") as output_pdf:
+    with open(output_pdf_name, "wb") as output_pdf:
         writer.write(output_pdf)
 
-    print(f"Created '{"merged.pdf"}'")
+    print(f"Created '{output_pdf_name}'")
