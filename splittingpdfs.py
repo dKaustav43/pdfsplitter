@@ -1,6 +1,6 @@
 import os
 from PyPDF2 import PdfWriter, PdfReader
-
+from utilities import *
 input_pdf_path = input("Enter the path of the pdf file here:")
 output_pdf_path = input("Enter the path where you would like to store the spliced pdf:")
 
