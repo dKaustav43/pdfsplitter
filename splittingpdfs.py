@@ -16,6 +16,12 @@ def split_pdf(input_pdf_path:str, output_pdf_path:str, start:int, end:int):
         raise FileNotFoundError(f"Input file does not exist: {input_pdf_path}")
 
     reader = PdfReader(str(input_path))
+    total_pages = len(reader.pages)
+
+    # validate pages
+    if start < 0 or end >= total_pages:
+        raise ValueError("Page range is out of bounds."
+                         f"PDF has {total_pages} pages.")
 
     writer = PdfWriter()
 
@@ -23,10 +29,6 @@ def split_pdf(input_pdf_path:str, output_pdf_path:str, start:int, end:int):
     for i in range(start, end+1):
         writer.add_page(reader.pages[i])
     
-    # validate pages
-    if start < 0 or end >= len(reader.pages):
-        raise ValueError("Page range is out of bounds")
-
     # Write to a single merged PDF
     output_path = Path(output_pdf_path)
     with open(output_path, "wb") as output_pdf:
