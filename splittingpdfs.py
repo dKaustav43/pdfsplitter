@@ -9,7 +9,7 @@ def check_input_pdfpath(input_pdf_path:str):
     if not input_path.is_file():
         raise FileNotFoundError(f"Input file does not exist: {input_pdf_path}")
     
-    return f"Input pdf file found at {input_path}"
+    return input_path
     
 def read_and_validate_pdf(input_pdf_path:str, start_page:int, end_page:int):
     
@@ -24,7 +24,7 @@ def read_and_validate_pdf(input_pdf_path:str, start_page:int, end_page:int):
         raise ValueError("Page range is out of bounds."
                          f"PDF has {total_pages} pages.")
 
-    return f"Page range is valid and the program will be extracting between pg.{start_page} to pg.{end_page}."
+    return reader
 
 def write_to_newpdf(input_pdf_path:str, start_page:int, end_page:int):
     
@@ -85,8 +85,7 @@ def output_split_pdf(input_pdf_path:str, output_pdf_path:str, start_page:int,end
 def main():
 
     input_pdf_path = input("Enter the path of the pdf file here: ")
-    check_pdf_path_msg = check_input_pdfpath(input_pdf_path)
-    print(check_pdf_path_msg)
+    
     
     output_pdf_path = input("Enter the path where you would like to store the split pdf: ")
 
