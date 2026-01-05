@@ -24,7 +24,7 @@ def read_and_validate_pdf(input_pdf_path:str, start_page:int, end_page:int):
         raise ValueError("Page range is out of bounds."
                          f"PDF has {total_pages} pages.")
 
-    return f"Pages to be extracted are starting at pg.{start_page} and ending at pg.{end_page}."
+    return f"Page range is valid and the program will be extracting between pg.{start_page} to pg.{end_page}."
 
 def write_to_newpdf(input_pdf_path:str, start_page:int, end_page:int):
     
