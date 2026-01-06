@@ -49,7 +49,7 @@ def main():
     output_pdf_path = input("Enter the path where you would like to store the split pdf: ")
 
     start_page = int(input("Start page index: "))
-    end_page = int(input("End page inded: "))
+    end_page = int(input("End page index: "))
 
     reader = read_and_validate_pdf(input_pdf_path)
     writer = write_to_newpdf(reader,start_page,end_page)
