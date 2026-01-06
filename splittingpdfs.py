@@ -19,8 +19,8 @@ def read_and_validate_pdf(input_pdf_path:str) -> PdfReader:
 
 def write_to_newpdf(reader:PdfReader, start_page:int, end_page:int) -> PdfWriter:
     """Uses the Reader helper function and store custom pdf pages to a PdfWriter Object"""
-    total_pages = len(reader.pages)
     
+    total_pages = len(reader.pages)
     # validate pages
     if start_page < 0 or end_page >= total_pages:
         raise ValueError("Page range is out of bounds."
