@@ -51,7 +51,7 @@ def main():
     start_page = int(input("Start page index: "))
     end_page = int(input("End page index: "))
 
-    reader = read_and_validate_pdf(input_pdf_path)
+    reader = read_pdf(input_pdf_path)
     writer = write_to_newpdf(reader,start_page,end_page)
 
     result = output_split_pdf(writer,output_pdf_path)
