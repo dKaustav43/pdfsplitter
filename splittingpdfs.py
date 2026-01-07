@@ -9,7 +9,7 @@ def check_input_pdfpath(input_pdf_path:str) -> Path:
     
     return path
     
-def read_and_validate_pdf(input_pdf_path:str) -> PdfReader:
+def read_pdf(input_pdf_path:str) -> PdfReader:
     """(Helper function)Reads the pdf file and returns an object of type PdfReader."""
     path = check_input_pdfpath(input_pdf_path)
 
