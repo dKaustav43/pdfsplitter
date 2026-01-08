@@ -13,10 +13,23 @@ def read_pdf(input_pdf_path:str) -> PdfReader:
     """(Helper function)Reads the pdf file and returns an object of type PdfReader."""
     path = check_input_pdfpath(input_pdf_path)
 
-    reader = PdfReader(str(path))
-    
-    return reader
+    try:
+        reader = PdfReader(str(path))
+        # Handle encryption explicitly
+        if reader.is_encrypted:
+            decrypted = reader.decrypt("") #needs a specific password
+            if decrypted == 0:
+                raise ValueError("PDF is encrypted and cannot be decrypted")
 
+        # An early evaluation to catch errors
+        _ = len(reader.pages)
+        
+        return reader
+    
+    except Exception as e:
+        raise ValueError(f"Failed to read PDF:{path}. "
+                         "The file may be corrupted, encrypted, or invalid.") from e
+    
 def write_to_newpdf(reader:PdfReader, start_page:int, end_page:int) -> PdfWriter:
     """Uses the Reader helper function and store custom pdf pages to a PdfWriter Object"""
     
