@@ -1,6 +1,6 @@
 
 from pathlib import Path
-from PyPDF2 import PdfWriter, PdfReader
+from pypdf import PdfWriter, PdfReader
 
 
 def split_pdf(input_pdf_path:str, output_pdf_path:str, start:int, end:int):
