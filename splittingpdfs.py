@@ -1,5 +1,5 @@
 from pathlib import Path
-from PyPDF2 import PdfWriter, PdfReader
+from pypdf import PdfWriter, PdfReader
 
 def check_input_pdfpath(input_pdf_path:str) -> Path:
     """(I/O)Checks and returns a path object from an input_pdf_path as a string input."""
