@@ -12,7 +12,8 @@ def check_input_pdfpath(input_pdf_path:str) -> Path:
 def read_pdf(input_pdf_path:str) -> PdfReader:
     """(Helper function)Reads the pdf file and returns an object of type PdfReader."""
     path = check_input_pdfpath(input_pdf_path)
-
+    #what if it is not a pdf file?
+    #generalise checks.
     try:
         reader = PdfReader(str(path))
         # Handle encryption explicitly
