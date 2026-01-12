@@ -5,8 +5,11 @@ from splittingpdfs import check_input_pdfpath, read_pdf,write_to_newpdf,output_s
 
 
 ###### Testing the check_input_pdfpath function #####
+#have a look at Pytest documentation on examples of suite of Tests. 
+#Other testing frameworks like gtests could be useful as well. Check most popular testing framework for pytests. 
 
 input_pdf_path = "tests/data/git_intro.pdf"
+incorrect_pdf_path = "tests/data/gut_intro.pdf"
 
 def test_pass_check_input_pdfpath(sample_path=input_pdf_path):
     
@@ -15,7 +18,6 @@ def test_pass_check_input_pdfpath(sample_path=input_pdf_path):
     assert path.exists()
     assert isinstance(path, Path)
 
-incorrect_pdf_path = "tests/data/gut_intro.pdf"
 
 def test_incorrect_input_pdfpath(sample_path = incorrect_pdf_path):
     
