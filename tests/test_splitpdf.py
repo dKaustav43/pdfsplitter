@@ -4,9 +4,7 @@ from pypdf import PdfReader, PdfWriter
 from splittingpdfs import check_input_pdfpath, read_pdf,write_to_newpdf,output_split_pdf
 
 
-###### Testing the check_input_pdfpath function #####
-#have a look at Pytest documentation on examples of suite of Tests. 
-#Other testing frameworks like gtests could be useful as well. Check most popular testing framework for pytests. 
+###### Testing the check_input_pdfpath function #### 
 
 input_pdf_path = "tests/data/git_intro.pdf"
 incorrect_pdf_path = "tests/data/gut_intro.pdf"
