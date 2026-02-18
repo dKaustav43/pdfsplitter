@@ -1,0 +1,1 @@
+This is a simple Python script to split a PDF file into multiple files, each containing a specified number of pages. The script uses the PyPDF2 library to handle PDF manipulation.
