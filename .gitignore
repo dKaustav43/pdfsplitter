@@ -3,3 +3,9 @@
 *.pdf  # if generated
 __pycache__/
 .venv/
+notes.md
+main.py
+githubactions_ci_notes.md
+backup.md
+.python-version
+.DS_Store
