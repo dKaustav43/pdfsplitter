@@ -3,6 +3,7 @@ from pypdf import PdfWriter, PdfReader
 
 def check_input_pdfpath(input_pdf_path:str) -> Path:
     """(I/O)Checks and returns a path object from an input_pdf_path as a string input."""
+
     path = Path(input_pdf_path)    
     if not path.is_file():
         raise FileNotFoundError(f"Input file does not exist: {input_pdf_path}")
@@ -11,9 +12,9 @@ def check_input_pdfpath(input_pdf_path:str) -> Path:
     
 def read_pdf(input_pdf_path:str) -> PdfReader:
     """(Helper function)Reads the pdf file and returns an object of type PdfReader."""
+    
     path = check_input_pdfpath(input_pdf_path)
-    #what if it is not a pdf file?
-    #generalise checks.
+    
     try:
         reader = PdfReader(str(path))
         # Handle encryption explicitly
@@ -49,6 +50,7 @@ def write_to_newpdf(reader:PdfReader, start_page:int, end_page:int) -> PdfWriter
 
 def output_split_pdf(writer:PdfWriter, output_pdf_path:str) -> str:
     """(I/O)Uses the write helper function and returns a pdf in output_pdf_path location."""
+    
     # Write to a single merged PDF
     output_path = Path(output_pdf_path)
     
