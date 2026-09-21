@@ -1,5 +1,5 @@
 from pathlib import Path
-from pypdf import PdfWriter, PdfReader
+from pypdf import PdfWriter, PdfReader  # type: ignore
 
 def check_input_pdfpath(input_pdf_path:str) -> Path:
     """(I/O)Checks and returns a path object from an input_pdf_path as a string input."""
@@ -44,7 +44,7 @@ def write_to_newpdf(reader:PdfReader, start_page:int, end_page:int) -> PdfWriter
     writer = PdfWriter()
     # add pages to the writer
     for i in range(start_page, end_page+1):
-        writer.add_page(reader.pages[i])
+        writer.add_page(reader.pages[i-1])
     
     return writer
 
