@@ -1,7 +1,3 @@
-# Creating specific endpoints for AWS and streamlit UI.
-
-## An endpoint which takes input pdf, stores it in a temporary directory on linux file system
-## and deletes the output when the split pdf is sent back.
 import pathlib
 import shutil
 import tempfile
@@ -18,9 +14,17 @@ async def delete_file(uploaded_file: UploadFile):
     await uploaded_file.close()
 
 
+@app.get("/")
+def startup_message():
+    return {
+        "Welcome": "This app splits an uploaded pdf. It doesn't store your pdf so you don't need to worry."
+    }
+
+
 @app.post("/upload/", deprecated=True, description="This endpoint is deprecated!")
 async def test_upload_file_endpoint(
-    background_task: BackgroundTasks, file: UploadFile | None = None,
+    background_task: BackgroundTasks,
+    file: UploadFile | None = None,
 ):
     if not file:
         return {"message": "No file sent"}
@@ -50,7 +54,6 @@ async def splitting_pdf(
         contents = await file.read()
         temp_dir_path = pathlib.Path(tempfile.mkdtemp())
         input_pdf_path = temp_dir_path / "input.pdf"
-        # writing data into a newly created directory
         input_pdf_path.write_bytes(contents)
 
         try:
