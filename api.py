@@ -18,9 +18,9 @@ async def delete_file(uploaded_file: UploadFile):
     await uploaded_file.close()
 
 
-@app.post("/upload/")
+@app.post("/upload/", deprecated=True, description="This endpoint is deprecated!")
 async def test_upload_file_endpoint(
-    background_task: BackgroundTasks, file: UploadFile | None = None
+    background_task: BackgroundTasks, file: UploadFile | None = None,
 ):
     if not file:
         return {"message": "No file sent"}
