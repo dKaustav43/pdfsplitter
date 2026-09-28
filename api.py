@@ -46,23 +46,25 @@ async def splitting_pdf(
     background_task: BackgroundTasks,
     file: UploadFile | None = None,
 ):
-
+    _MAX_BYTES = 20 * 1024 * 1024
     if not file:
         return {"message": "No file sent"}
 
-    else:
-        contents = await file.read()
-        temp_dir_path = pathlib.Path(tempfile.mkdtemp())
-        input_pdf_path = temp_dir_path / "input.pdf"
-        input_pdf_path.write_bytes(contents)
+    contents = await file.read()
+    if len(contents) > _MAX_BYTES:
+        raise HTTPException(status_code=413, detail ="File too large (max 20 MB)")
+    
+    temp_dir_path = pathlib.Path(tempfile.mkdtemp())
+    input_pdf_path = temp_dir_path / "input.pdf"
+    input_pdf_path.write_bytes(contents)
 
-        try:
-            reader = read_pdf(str(input_pdf_path))
-            writer = write_to_newpdf(reader, start_page, end_page)
-        except ValueError as e:
-            raise HTTPException(status_code=400, detail=str(e))
+    try:
+        reader = read_pdf(str(input_pdf_path))
+        writer = write_to_newpdf(reader, start_page, end_page)
+    except ValueError as e:
+        raise HTTPException(status_code=400, detail=str(e))
 
-        output_split_pdf_path = temp_dir_path / "split_pdf.pdf"
-        result = output_split_pdf(writer, str(output_split_pdf_path))
-        background_task.add_task(shutil.rmtree, temp_dir_path, ignore_errors=True)
-        return FileResponse(result, filename="split_pdf")
+    output_split_pdf_path = temp_dir_path / "split_pdf.pdf"
+    result = output_split_pdf(writer, str(output_split_pdf_path))
+    background_task.add_task(shutil.rmtree, temp_dir_path, ignore_errors=True)
+    return FileResponse(result, filename="split_pdf")
